@@ -1,9 +1,26 @@
 import Lottie from "lottie-react";
-import React from "react";
+import React, { use } from "react";
 import { Link } from "react-router";
 import registerAnimation from "../assets/lotties/registration.json"
+import { AuthContext } from "../contexts/AuthContext";
 
 const Register = () => {
+    const {handeCreateAccount}=use(AuthContext)
+    const handleRegister=(e)=>{
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const pass = form.pass.value;
+        handeCreateAccount(email,pass)
+        .then(result =>{
+            console.log(result)
+        })
+        .catch(error=>{
+            console.log(error)
+        })
+
+
+    }
   return (
     <div className="min-h-screen bg-base-200 flex items-center justify-center px-4">
       <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-10 w-full max-w-6xl">
@@ -15,10 +32,11 @@ const Register = () => {
           <p className="text-center mb-8 text-gray-500">
             Join us and build your career!
           </p>
-          <form>
+          <form onSubmit={handleRegister}>
             <div className="mb-4">
               <label className="label font-semibold">Full Name</label>
               <input
+              name="name"
                 type="text"
                 className="input input-bordered w-full"
                 placeholder="Your name"
@@ -28,6 +46,7 @@ const Register = () => {
               <label className="label font-semibold">Email</label>
               <input
                 type="email"
+                name="email"
                 className="input input-bordered w-full"
                 placeholder="Your email"
               />
@@ -36,16 +55,9 @@ const Register = () => {
               <label className="label font-semibold">Password</label>
               <input
                 type="password"
+                name='pass'
                 className="input input-bordered w-full"
                 placeholder="Password"
-              />
-            </div>
-            <div className="mb-4">
-              <label className="label font-semibold">Confirm Password</label>
-              <input
-                type="password"
-                className="input input-bordered w-full"
-                placeholder="Confirm password"
               />
             </div>
             <button className="btn btn-primary w-full">Register</button>

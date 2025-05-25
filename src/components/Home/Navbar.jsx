@@ -93,7 +93,7 @@ const Navbar = () => {
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
+                        className="h-6 w-6"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -249,14 +249,17 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-          <div className="flex items-center jusctify-center gap-8">
+          <div className="flex items-center jusctify-center gap-8 ">
             <Link
               to="/register"
-              className="text-blue-700 underline hover:text-blue-600 cursor-pointer hover:mb-0.5 duration-300 r text-sm "
+              className=" hidden md:inline-block text-blue-700 underline hover:text-blue-600 cursor-pointer hover:mb-0.5 duration-300 r text-sm "
             >
               Register
             </Link>
-            <Link to='/login' className="text-sm btn bg-[#3c65f5] text-gray-100 hover:bg-[#05264e] hover:mb-0.5 duration-300  hover:text-gray-200">
+            <Link
+              to="/login"
+              className="hidden md:inline-block  text-sm btn bg-[#3c65f5] text-gray-100 hover:bg-[#05264e] hover:mb-0.5 duration-300  hover:text-gray-200"
+            >
               Sign in
             </Link>
           </div>

@@ -1,9 +1,25 @@
 import Lottie from "lottie-react";
-import React from "react";
+import React, { use } from "react";
 import { Link } from "react-router";
-import loginAnimation from "../assets/lotties/register.json"
+import loginAnimation from "../assets/lotties/register.json";
+import { AuthContext } from "../contexts/AuthContext";
 
 const Login = () => {
+  const { handleSignInEmailPass } = use(AuthContext);
+
+  const handleLoginEmailPass = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const pass = form.pass.value;
+    handleSignInEmailPass(email, pass)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="min-h-screen bg-base-200 flex items-center justify-center px-4">
       <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-10 w-full max-w-6xl">
@@ -15,11 +31,12 @@ const Login = () => {
           <p className="text-center mb-8 text-gray-500">
             Login to your account to continue
           </p>
-          <form>
+          <form onSubmit={handleLoginEmailPass}>
             <div className="mb-4">
               <label className="label font-semibold">Email</label>
               <input
                 type="email"
+                name="email"
                 className="input input-bordered w-full"
                 placeholder="Enter your email"
               />
@@ -28,6 +45,7 @@ const Login = () => {
               <label className="label font-semibold">Password</label>
               <input
                 type="password"
+                name="pass"
                 className="input input-bordered w-full"
                 placeholder="Enter your password"
               />
@@ -41,7 +59,9 @@ const Login = () => {
           </form>
           <p className="text-center text-sm mt-6">
             Don't have an account?
-            <Link to='/register' className="link link-primary ml-1">Register</Link>
+            <Link to="/register" className="link link-primary ml-1">
+              Register
+            </Link>
           </p>
         </div>
 
