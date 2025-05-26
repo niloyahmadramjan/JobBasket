@@ -7,11 +7,11 @@ export default function JobCategorySection() {
   const scrollRef = useRef(null);
 
   const scrollLeft = () => {
-    scrollRef.current.scrollBy({ left: -250, behavior: "smooth" });
+    scrollRef.current.scrollBy({ left: -255, behavior: "smooth" });
   };
 
   const scrollRight = () => {
-    scrollRef.current.scrollBy({ left: 250, behavior: "smooth" });
+    scrollRef.current.scrollBy({ left: 255, behavior: "smooth" });
   };
 
   const jobsCategory = [
@@ -36,31 +36,54 @@ export default function JobCategorySection() {
           Find the job that’s perfect for you. about 800+ new jobs everyday
         </p>
       </div>
-      <div className="relative flex justify-center items-center">
-        <button onClick={scrollLeft}>←</button>
-        <div
-          ref={scrollRef}
-          className="overflow-x-auto flex gap-4 px-6 py-4  items-center scrollbar-hide  "
+      
+       <div className="relative w-full my-10">
+      {/* Buttons */}
+      <div className="flex justify-between items-center mb-4">
+        <button
+          onClick={scrollLeft}
+          className="bg-gray-200 cursor-pointer hover:bg-gray-300 text-xl px-3 mr-2 py-2 rounded-full shadow"
         >
-          {jobsCategory.map((item, idx) => (
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.5 }}
-              key={idx}
-              className="flex items-center w-64 p-5 border rounded-lg hover:shadow-md transition duration-200"
-            >
-              <div className="text-3xl mr-4 w-12">{item.icon}</div>
-              <div>
-                <h3 className="text-lg font-semibold">{item.title}</h3>
-                <p className="text-sm text-gray-500 w-4">
-                  {item.jobs} Jobs Available
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-        <button onClick={scrollRight}>→</button>
+          ←
+        </button>
+        {/* slider  */}
+
+
+<div
+        ref={scrollRef}
+        className="overflow-x-auto flex custom-scroll-hide gap-4 px-2 "
+      >
+        {jobsCategory.map((item, idx) => (
+          <motion.div
+            whileHover={{ scale: 1.03 }}
+            transition={{ duration: 0.3 }}
+            key={idx}
+            className="min-w-[240px] max-w-[240px] flex items-center p-5 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition duration-300"
+          >
+            <div className="text-4xl mr-4 w-12 flex-shrink-0">{item.icon}</div>
+            <div className="flex flex-col">
+              <h3 className="text-base md:text-lg font-semibold text-gray-800">
+                {item.title}
+              </h3>
+              <p className="text-sm text-gray-500 whitespace-nowrap">
+                {item.jobs} Jobs Available
+              </p>
+            </div>
+          </motion.div>
+        ))}
       </div>
+
+
+        <button
+          onClick={scrollRight}
+          className="bg-gray-200 cursor-pointer hover:bg-gray-300 text-xl px-3 ml-2 py-2 rounded-full shadow"
+        >
+          →
+        </button>
+      </div>
+
+      
+    </div>
 
       <div className="flex flex-col md:flex-row justify-between items-center bg-blue-50 p-6 rounded-lg shadow-md">
         <div className="flex items-center gap-4">
