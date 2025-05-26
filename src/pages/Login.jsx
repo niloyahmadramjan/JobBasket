@@ -26,7 +26,7 @@ const Login = () => {
         {/* Left Side - Login Form */}
         <div className="bg-base-100 rounded-2xl shadow-xl p-8 w-full">
           <h2 className="text-3xl lg:text-4xl font-bold text-center mb-6">
-            Welcome Back 👋
+            Welcome Back
           </h2>
           <p className="text-center mb-8 text-gray-500">
             Login to your account to continue

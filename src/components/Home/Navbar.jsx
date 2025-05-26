@@ -1,7 +1,20 @@
-import React from "react";
+import React, { use } from "react";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Navbar = () => {
+  const { user, loader, handleLogOut } = use(AuthContext);
+
+  const handleUserLogOut = () => {
+    handleLogOut()
+      .then(() => {
+        alert("log out succesffull");
+      })
+      .catch(() => {
+        alert("oops! something is wrong");
+      });
+  };
+
   return (
     <div className="fixed top-0 left-0 z-50 w-full max-h-20 bg-transparent backdrop-blur-md">
       <div className="max-w-7xl mx-auto w-full ">
@@ -249,19 +262,38 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-          <div className="flex items-center jusctify-center gap-8 ">
-            <Link
-              to="/register"
-              className=" hidden md:inline-block text-blue-700 underline hover:text-blue-600 cursor-pointer hover:mb-0.5 duration-300 r text-sm "
-            >
-              Register
-            </Link>
-            <Link
-              to="/login"
-              className="hidden md:inline-block  text-sm btn bg-[#3c65f5] text-gray-100 hover:bg-[#05264e] hover:mb-0.5 duration-300  hover:text-gray-200"
-            >
-              Sign in
-            </Link>
+          <div className="hidden md:inline-block ">
+            {loader? <h3>Loading...</h3>: user?.email ? (
+              <div className="flex items-center jusctify-center gap-8 ">
+                <Link
+                  to="/profile"
+                  className="text-blue-700 underline hover:text-blue-600 cursor-pointer hover:mb-0.5 duration-300 r text-sm "
+                >
+                  Profile
+                </Link>
+                <button
+                  onClick={handleUserLogOut}
+                  className="text-sm btn bg-[#3c65f5] text-gray-100 hover:bg-[#DB2525] hover:mb-0.5 duration-300  hover:text-[#FEFEFE]"
+                >
+                  Sign out
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center jusctify-center gap-8 ">
+                <Link
+                  to="/register"
+                  className="text-blue-700 underline hover:text-blue-600 cursor-pointer hover:mb-0.5 duration-300 r text-sm "
+                >
+                  Register
+                </Link>
+                <Link
+                  to="/login"
+                  className="text-sm btn bg-[#3c65f5] text-gray-100 hover:bg-[#05264e] hover:mb-0.5 duration-300  hover:text-gray-200"
+                >
+                  Sign in
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>

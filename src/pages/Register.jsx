@@ -27,7 +27,7 @@ const Register = () => {
         {/* Left Side - Register Form */}
         <div className="bg-base-100 rounded-2xl shadow-xl p-8 w-full">
           <h2 className="text-3xl lg:text-4xl font-bold text-center mb-6">
-            Create Account 🚀
+            Create Account
           </h2>
           <p className="text-center mb-8 text-gray-500">
             Join us and build your career!
