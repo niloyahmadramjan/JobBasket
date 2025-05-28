@@ -16,29 +16,28 @@ const AuthProvider = ({ children }) => {
     setLoader(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
-// user login use email pass 
+  // user login use email pass
   const handleSignInEmailPass = (email, pass) => {
     setLoader(true);
     return signInWithEmailAndPassword(auth, email, pass);
   };
 
-  // user log out 
-  const handleLogOut = ()=>{
-    return signOut(auth)
-  }
+  // user log out
+  const handleLogOut = () => {
+    return signOut(auth);
+  };
 
   const authinfo = {
     handeCreateAccount,
     handleSignInEmailPass,
     loader,
     user,
-    handleLogOut
+    handleLogOut,
   };
 
   useEffect(() => {
     const unSubcribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log(currentUser);
       setLoader(false);
     });
     return () => unSubcribe();

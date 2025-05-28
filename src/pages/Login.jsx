@@ -1,20 +1,28 @@
 import Lottie from "lottie-react";
-import React, { use } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router";
 import loginAnimation from "../assets/lotties/register.json";
 import { AuthContext } from "../contexts/AuthContext";
+import Swal from "sweetalert2";
 
 const Login = () => {
-  const { handleSignInEmailPass } = use(AuthContext);
+  const { handleSignInEmailPass,  } = useContext(AuthContext);
 
   const handleLoginEmailPass = (e) => {
     e.preventDefault();
+
     const form = e.target;
     const email = form.email.value;
     const pass = form.pass.value;
     handleSignInEmailPass(email, pass)
-      .then((result) => {
-        console.log(result);
+      .then(() => {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Login succeefull",
+          showConfirmButton: false,
+          timer: 1000,
+        });
       })
       .catch((error) => {
         console.log(error);

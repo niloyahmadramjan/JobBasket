@@ -200,8 +200,7 @@ const Navbar = () => {
                           Contact
                         </NavLink>
                       </li>
-
-                      <span className="sm:mb-0 text-md mb-4 font-bold">
+                       {loader? <h3>Loading...</h3>: user? <> <span className="sm:mb-0 text-md mb-4 font-bold">
                         Your Account
                       </span>
 
@@ -255,7 +254,31 @@ const Navbar = () => {
                         >
                           Sign Out
                         </NavLink>
+                      </li></> : <><li className="cursor-pointer mb-4 sm:mb-0 sm:pr-4">
+                        <NavLink
+                          to="/register"
+                          className={({ isActive }) =>
+                            `transition-all duration-300 ease-in-out hover:pl-4 hover:text-primary ${
+                              isActive ? "text-primary" : ""
+                            }`
+                          }
+                        >
+                          Register
+                        </NavLink>
                       </li>
+                      <li className="cursor-pointer mb-4 sm:mb-0 sm:pr-4">
+                        <NavLink
+                          to="/login"
+                          className={({ isActive }) =>
+                            `transition-all duration-300 ease-in-out hover:pl-4 hover:text-primary ${
+                              isActive ? "text-primary" : ""
+                            }`
+                          }
+                        >
+                          Sign In
+                        </NavLink>
+                      </li></>}
+                     
                     </ul>
                   </div>
                 </div>
