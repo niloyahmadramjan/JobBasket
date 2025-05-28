@@ -32,6 +32,7 @@ const AuthProvider = ({ children }) => {
     handleSignInEmailPass,
     loader,
     user,
+    setLoader,
     handleLogOut,
   };
 

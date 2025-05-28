@@ -1,13 +1,18 @@
 import Lottie from "lottie-react";
 import React, { useContext } from "react";
-import { Link } from "react-router";
+import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import loginAnimation from "../assets/lotties/register.json";
 import { AuthContext } from "../contexts/AuthContext";
 import Swal from "sweetalert2";
 
 const Login = () => {
   const { handleSignInEmailPass,  } = useContext(AuthContext);
+const location = useLocation();
+const navigate = useNavigate()
+const from = location.state || "/";
 
+
+console.log(location)
   const handleLoginEmailPass = (e) => {
     e.preventDefault();
 
@@ -23,6 +28,9 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1000,
         });
+        form.reset()
+        navigate(from)
+       
       })
       .catch((error) => {
         console.log(error);

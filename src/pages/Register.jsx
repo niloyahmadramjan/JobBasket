@@ -1,26 +1,34 @@
 import Lottie from "lottie-react";
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { Link } from "react-router";
-import registerAnimation from "../assets/lotties/registration.json"
+import registerAnimation from "../assets/lotties/registration.json";
 import { AuthContext } from "../contexts/AuthContext";
+import Swal from "sweetalert2";
 
 const Register = () => {
-    const {handeCreateAccount}=use(AuthContext)
-    const handleRegister=(e)=>{
-        e.preventDefault();
-        const form = e.target;
-        const email = form.email.value;
-        const pass = form.pass.value;
-        handeCreateAccount(email,pass)
-        .then(result =>{
-            console.log(result)
-        })
-        .catch(error=>{
-            console.log(error)
-        })
-
-
-    }
+  const { handeCreateAccount,setLoader } = use(AuthContext);
+  const [errorMessage,setErrorMessage] = useState("")
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const pass = form.pass.value;
+    handeCreateAccount(email, pass)
+      .then(() => {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Registration succeefull",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+        form.reset();
+      })
+      .catch((error) => {
+        setLoader(false)
+       setErrorMessage(error.message)
+      });
+  };
   return (
     <div className="min-h-screen bg-base-200 flex items-center justify-center px-4">
       <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-10 w-full max-w-6xl">
@@ -36,7 +44,7 @@ const Register = () => {
             <div className="mb-4">
               <label className="label font-semibold">Full Name</label>
               <input
-              name="name"
+                name="name"
                 type="text"
                 className="input input-bordered w-full"
                 placeholder="Your name"
@@ -55,16 +63,19 @@ const Register = () => {
               <label className="label font-semibold">Password</label>
               <input
                 type="password"
-                name='pass'
+                name="pass"
                 className="input input-bordered w-full"
                 placeholder="Password"
               />
             </div>
+            {errorMessage? <p className="text-red-400 text-sm">{errorMessage}</p> : ''}
             <button className="btn btn-primary w-full">Register</button>
           </form>
           <p className="text-center text-sm mt-6">
             Already have an account?
-            <Link to='/login' className="link link-primary ml-1">Login</Link>
+            <Link to="/login" className="link link-primary ml-1">
+              Login
+            </Link>
           </p>
         </div>
 
