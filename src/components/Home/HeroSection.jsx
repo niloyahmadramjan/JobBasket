@@ -27,35 +27,42 @@ const HeroSection = () => {
           </motion.div>
           {/* Search Form */}
           <div className="bg-white shadow-md rounded-xl p-4 flex flex-col md:flex-row items-center gap-4">
-            <select className="select select-bordered w-full md:w-1/4">
-              <option disabled selected>
-                Industry
-              </option>
-              <option>IT</option>
-              <option>Design</option>
-              <option>Marketing</option>
-            </select>
+  <select
+    className="select select-bordered w-full md:w-1/4"
+    defaultValue=""
+  >
+    <option value="" disabled>
+      Industry
+    </option>
+    <option value="IT">IT</option>
+    <option value="Design">Design</option>
+    <option value="Marketing">Marketing</option>
+  </select>
 
-            <select className="select select-bordered w-full md:w-1/4">
-              <option disabled selected>
-                Location
-              </option>
-              <option>Dhaka</option>
-              <option>Kuala Lumpur</option>
-              <option>Remote</option>
-            </select>
+  <select
+    className="select select-bordered w-full md:w-1/4"
+    defaultValue=""
+  >
+    <option value="" disabled>
+      Location
+    </option>
+    <option value="Dhaka">Dhaka</option>
+    <option value="Kuala Lumpur">Kuala Lumpur</option>
+    <option value="Remote">Remote</option>
+  </select>
 
-            <input
-              type="text"
-              placeholder="Your keyword..."
-              className="input input-bordered w-full md:w-1/3"
-            />
+  <input
+    type="text"
+    placeholder="Your keyword..."
+    className="input input-bordered w-full md:w-1/3"
+  />
 
-            <button className="btn btn-primary w-full md:w-auto">
-              <FaSearch className="mr-2" />
-              Search
-            </button>
-          </div>
+  <button className="btn btn-primary w-full md:w-auto">
+    <FaSearch className="mr-2" />
+    Search
+  </button>
+</div>
+
 
           {/* Popular Searches */}
           <div className="text-sm text-gray-500">

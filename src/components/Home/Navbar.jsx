@@ -33,66 +33,66 @@ const Navbar = () => {
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="flex items-center space-x-6">
-              <li className="hover:pb-2 transition-all duration-300 ease-in-out hover:text-primary ">
+              <li className="hover:pb-2 transition-all duration-300 ease-in-out hover:text-primary hover:underline ">
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
-                    ` ${isActive ? "text-primary" : ""}`
+                    ` ${isActive ? "text-primary underline" : ""}`
                   }
                 >
                   Home
                 </NavLink>
               </li>
 
-              <li className="hover:pb-2 transition-all duration-300 ease-in-out hover:text-primary ">
+              <li className="hover:pb-2 transition-all duration-300 ease-in-out hover:text-primary hover:underline ">
                 <NavLink
                   to="/findajob"
                   className={({ isActive }) =>
-                    ` ${isActive ? "text-primary" : ""}`
+                    ` ${isActive ? "text-primary underline" : ""}`
                   }
                 >
                   Find A Job
                 </NavLink>
               </li>
 
-              <li className="hover:pb-2 transition-all duration-300 ease-in-out hover:text-primary ">
+              <li className="hover:pb-2 transition-all duration-300 ease-in-out hover:text-primary hover:underline ">
                 <NavLink
                   to="/recruiters"
                   className={({ isActive }) =>
-                    ` ${isActive ? "text-primary" : ""}`
+                    ` ${isActive ? "text-primary underline" : ""}`
                   }
                 >
                   Recruiters
                 </NavLink>
               </li>
 
-              <li className="hover:pb-2 transition-all duration-300 ease-in-out hover:text-primary ">
+              <li className="hover:pb-2 transition-all duration-300 ease-in-out hover:text-primary hover:underline ">
                 <NavLink
                   to="/candidates"
                   className={({ isActive }) =>
-                    ` ${isActive ? "text-primary" : ""}`
+                    ` ${isActive ? "text-primary underline" : ""}`
                   }
                 >
                   Candidates
                 </NavLink>
               </li>
 
-              <li className="hover:pb-2 transition-all duration-300 ease-in-out hover:text-primary ">
+              <li className="hover:pb-2 transition-all duration-300 ease-in-out hover:text-primary hover:underline ">
                 <NavLink
                   to="/blog"
                   className={({ isActive }) =>
-                    ` ${isActive ? "text-primary" : ""}`
+                    ` ${isActive ? "text-primary underline" : ""}`
                   }
                 >
                   Blog
                 </NavLink>
               </li>
 
-              <li className="hover:pb-2 transition-all duration-300 ease-in-out hover:text-primary ">
+              <li className="hover:pb-2 transition-all duration-300 ease-in-out hover:text-primary hover:underline ">
                 <NavLink
                   to="/contact"
                   className={({ isActive }) =>
-                    ` ${isActive ? "text-primary" : ""}`
+                    ` ${isActive ? "text-primary underline" : ""}`
                   }
                 >
                   Contact

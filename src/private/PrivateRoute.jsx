@@ -1,6 +1,8 @@
 import React, { use } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 import { Navigate, useLocation } from 'react-router';
+import Loader from "../assets/lotties/loader.json"
+import Lottie from "lottie-react";
 
 const PrivateRoute = ({children}) => {
 
@@ -8,7 +10,7 @@ const PrivateRoute = ({children}) => {
     const location = useLocation();
 
     if(loader){
-        return <p>Loading....</p>
+        return <Lottie animationData={Loader} loop={true} autoplay={true} />
     }
     if(!user){
         return <Navigate to="/login" state={location.pathname}></Navigate>

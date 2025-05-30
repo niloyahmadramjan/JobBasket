@@ -1,11 +1,28 @@
-import React, { Suspense, use } from "react";
+import React, { Suspense, use, useEffect, useState } from "react";
 import { NavLink } from "react-router";
 import JobList from "../features/jobs/jobList";
+import Loader from "../assets/lotties/loader.json"
+import Lottie from "lottie-react";
 
-const jobsPromise = fetch('http://localhost:3000/jobs').then(res=>res.json())
+const jobsPromise = fetch("http://localhost:3000/jobs").then((res) =>
+  res.json()
+);
 
 const JobsPage = () => {
-    const jobsData = use(jobsPromise)
+  const initialJobsData = use(jobsPromise);
+  const [jobsData, setJobsData] = useState([]);
+  const [showMore, setShowMore] = useState(false);
+
+  useEffect(() => {
+    
+    if (showMore) {
+      setJobsData(initialJobsData);
+    } else {
+      const showLess = initialJobsData.slice(0, 6);
+      setJobsData(showLess);
+    }
+  }, [showMore,initialJobsData]);
+
   return (
     <div className="bg-base-100 text-base-content p-4">
       <div>
@@ -89,15 +106,22 @@ const JobsPage = () => {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Job Card */}
-             <Suspense fallback='Loading...'>
-                {
-                    jobsData.map(job => <JobList key={job._id} job={job}></JobList>)
-                }
-             </Suspense>
-
+          <Suspense fallback={<Lottie animationData={Loader} loop={true} style={{width: "400px", height: "400px"}} autoplay={true} />}>
+            {jobsData.map((job) => (
+              <JobList key={job._id} job={job}></JobList>
+            ))}
+          </Suspense>
         </div>
+      </div>
+      <div className="text-center w-full">
+        <button
+          onClick={() => setShowMore(!showMore)}
+          className="mt-3 font-medium hover:underline cursor-pointer btn-primary btn focus:outline-none"
+        >
+          {showMore ? "Show Less" : "Show More"}
+        </button>
       </div>
     </div>
   );

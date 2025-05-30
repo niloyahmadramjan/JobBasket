@@ -17,7 +17,7 @@ const JobList = ({ job }) => {
   return (
    <div className="card border border-base-300 h-full shadow-md p-4 rounded-xl w-full mx-auto flex flex-col justify-between">
   {/* Top Content */}
-  <div>
+  <div >
     <div className="flex justify-between items-start mb-3">
       <div className="flex gap-3 items-center">
         <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
@@ -77,13 +77,16 @@ const JobList = ({ job }) => {
         </div>
       ))}
     </div>
+    <p className="text-sm text-gray-600 font-normal">
+      Salary : {salaryRange.min} - {salaryRange.max} {salaryRange.currency.toUpperCase()}
+    </p>
   </div>
 
   {/* Footer - stays at bottom */}
   <div className="flex justify-between items-center mt-auto pt-2">
-    <p className="text-sm text-gray-600 font-normal">
-      {salaryRange.min} - {salaryRange.max} {salaryRange.currency.toUpperCase()}
-    </p>
+    <Link to={`/jobDetails/${_id}`} className="btn-sm text-sm font-normal btn btn-primary btn-outline">
+     Job Details
+    </Link>
     <Link
       to={`/applyJob/${_id}`}
       className="btn btn-sm btn-outline btn-primary"
