@@ -45,7 +45,7 @@ const MyApplications = ({ myApplicationPromise }) => {
                       {job.status}
                     </span>
                   </td>
-                  <td className="px-4 py-3">{job.appliedDate}</td>
+                  <td className="px-4 py-3">{job.applicationDeadline}</td>
                 </tr>
               ))
             ) : (
