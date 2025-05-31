@@ -98,7 +98,7 @@ const Navbar = () => {
                   Contact
                 </NavLink>
               </li>
-            {user?   <li className="hover:pb-2 transition-all duration-300 ease-in-out hover:text-primary hover:underline ">
+            {!user? "":  <li className="hover:pb-2 transition-all duration-300 ease-in-out hover:text-primary hover:underline ">
                 <NavLink
                   to="/appliedJobs"
                   className={({ isActive }) =>
@@ -107,7 +107,7 @@ const Navbar = () => {
                 >
                   Applied Jobs
                 </NavLink>
-              </li>: ""}
+              </li>}
             </ul>
           </div>
           <div className="navbar-end">
