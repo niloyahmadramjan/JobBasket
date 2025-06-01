@@ -15,6 +15,7 @@ const MyApplications = ({ myApplicationPromise }) => {
         <table className="min-w-full table-auto border-collapse">
           <thead>
             <tr className="bg-indigo-100 text-indigo-700">
+              <th className="px-4 py-2 text-left">Number</th>
               <th className="px-4 py-2 text-left">Job Title</th>
               <th className="px-4 py-2 text-left">Company</th>
               <th className="px-4 py-2 text-left">Location</th>
@@ -24,11 +25,12 @@ const MyApplications = ({ myApplicationPromise }) => {
           </thead>
           <tbody>
             {application.length > 0 ? (
-              application.map((job) => (
+              application.map((job,index) => (
                 <tr
                   key={job.id}
                   className="border-b hover:bg-indigo-50 transition"
                 >
+                  <td className="px-4 py-3">{index + 1}</td>
                   <td className="px-4 py-3">{job.title}</td>
                   <td className="px-4 py-3">{job.company}</td>
                   <td className="px-4 py-3">{job.location}</td>
