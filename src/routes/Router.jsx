@@ -10,6 +10,7 @@ import Profile from "../pages/Profile";
 import AppliedJobs from "../features/jobs/AppliedJobs";
 import JobPost from "../features/employers/pages/JobPost";
 import PostedJobs from "../features/employers/pages/PostedJobs";
+import ViewApplications from "../features/employers/pages/ViewApplications";
 
 const router = createBrowserRouter([
   {
@@ -51,7 +52,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/appliedJobs",
-      element: (
+        element: (
           <PrivateRoute>
             <AppliedJobs></AppliedJobs>
           </PrivateRoute>
@@ -79,19 +80,26 @@ const router = createBrowserRouter([
       },
       {
         path: "/jobPost",
-      element: (
+        element: (
           <PrivateRoute>
             <JobPost></JobPost>
           </PrivateRoute>
-        )
+        ),
       },
       {
         path: "/postedJobs",
-      element: (
+        element: (
           <PrivateRoute>
             <PostedJobs></PostedJobs>
           </PrivateRoute>
-        )
+        ),
+      },
+      {
+        path: "/viewApplications/:job_id",
+        Component: ViewApplications,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/viewApplications/${params.job_id}`),
+        hydrateFallbackElement: <span>Loading..</span>,
       },
     ],
   },

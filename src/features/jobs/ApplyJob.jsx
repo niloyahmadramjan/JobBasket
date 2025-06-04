@@ -7,8 +7,8 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const ApplyJob = () => {
-  const {_id,title} = useLoaderData()
-  const {user} = use(AuthContext)
+  const { _id, title } = useLoaderData();
+  const { user } = use(AuthContext);
 
   const handleApplicationsForm = (e) => {
     e.preventDefault();
@@ -18,17 +18,26 @@ const ApplyJob = () => {
     const phoneNumber = form.phoneNumber.value;
     const resume = form.resume.value;
     const coverLetter = form.textArea.value;
+    const today = new Date();
+    const appliedOn = `${String(today.getDate()).padStart(2, "0")}-${String(
+      today.getMonth() + 1
+    ).padStart(2, "0")}-${today.getFullYear()}`;
+    const status = "Active";
+
     const application = {
       name,
       jobId: _id,
-      email : user.email,
+      appliedOn,
+      email: user.email,
       phoneNumber,
       resume,
-      coverLetter
+      coverLetter,
+      status,
     };
 
-    console.log(application)
-    axios.post("http://localhost:3000/applications", application)
+    console.log(application);
+    axios
+      .post("http://localhost:3000/applications", application)
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({
@@ -39,7 +48,7 @@ const ApplyJob = () => {
             timer: 1500,
           });
         }
-        form.reset()
+        form.reset();
       });
   };
 
@@ -58,7 +67,12 @@ const ApplyJob = () => {
 
         {/* Form Section */}
         <div className="card w-full bg-base-100 shadow-xl p-6 rounded-xl">
-          <h2 className="text-2xl font-bold mb-6">Submit your application for the <br /><Link className="link text-blue-400" to={`/jobDetails/${_id}`}>{title}</Link></h2>
+          <h2 className="text-2xl font-bold mb-6">
+            Submit your application for the <br />
+            <Link className="link text-blue-400" to={`/jobDetails/${_id}`}>
+              {title}
+            </Link>
+          </h2>
           <form onSubmit={handleApplicationsForm} className="space-y-4">
             <div className="form-control">
               <label className="label">
